@@ -1,0 +1,111 @@
+function getStudentsWithGradeA (student){
+     let result = [];
+     for(let key of student){
+         if(key.grade=="A"){
+           result.push(key.name) 
+         }
+     }
+     return result;
+ }
+ console.log(getStudentsWithGradeA([
+ { name: "Emma", grade: "B" },
+ { name: "Olivia", grade: "A" },
+ { name: "Sophia", grade: "A" },
+ { name: "Liam", grade: "A" } ]))
+
+// function flickSwitch(arr) {
+//     let state = true;
+//     let output = [];
+    
+//     for (let word of arr) {
+//         if (word === 'flick') {
+//             state = !state;  // switch
+//         }
+//         output.push(state);
+//     }
+    
+//     return output;
+// }
+
+// console.log(flickSwitch(['codewars', 'flick', 'flick', 'wars']));
+// Output → [true, false, false, false]
+
+// function operations(cal){
+//     let X = 0;
+//     for (let key of cal){
+//         if(key=="++X" || key =="X++"){
+//             X++;
+//         }
+//         else if(key == "--X" || key == "X--" ){
+//             X--;
+//         }
+//     }
+// return X;
+    
+// }
+
+// console.log(operations(["--X","X++","X++"]));
+// console.log(operations(["++X","++X","X++"]));
+// console.log(operations(["X++","++X","--X","X--"]));
+
+// function mapping(multi){
+//     let result = {};
+//     for (let key of multi){
+//         result[key] = key.toUpperCase();
+//         }
+//         return result;
+// }
+
+// console.log(mapping(["p", "s"]))
+// console.log(mapping(["a", "b", "c"]))
+// console.log(mapping(["a", "v", "y", "z"]))
+
+
+// function data(info){
+//     let arr = [];
+//     for (let key of info){
+//         if(key.grade == "A"){
+//             arr.push(key.name)
+//         }
+         }
+//     }
+//     return arr;
+
+// function data(info){
+//     let obj = {};
+//     let count = 1;
+
+//     for (let key of info){
+//         if(key.grade == "A"){
+//             obj["student" + count] = key.name;  
+//             count++;
+//         }
+//     }
+//     return obj;
+// }
+
+// console.log(data([
+//     { name: "ram", grade: "B"},
+//     { name: "kumar", grade: "A"},
+//     { name: "flick", grade: "A"},
+//     { name: "arun", grade: "A"}
+// ]));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ --> -->
