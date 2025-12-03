@@ -7,12 +7,186 @@
 </head>
 <body>
     <script> 
-let a = 5;
-let b = 10;
-let
+
+        ⭐ Example 1 (Synchronous – line by line)
+console.log("A");
+console.log("B");
+console.log("C");
+
+
+⭐ Example 2 (Asynchronous – setTimeout)
+console.log("Start");
+setTimeout(() => {
+  console.log("Async Job");
+}, 2000);
+console.log("End");
+
+
+⭐ Example 1 (Using strict mode)
+"use strict";
+x = 10;   // ❌ ERROR (undeclared variable)
+
+
+⭐ Example 2 (Nested function calls)
+function one() {
+  two();
+  console.log("first")
+}
+function two() {
+  three();
+  console.log("second")
+}
+function three() {
+  console.log("Done");
+}
+one();
+
+
+⭐ Temporal Dead Zone (3 example for TDZ)
+console.log(a); // ❌ ReferenceError (TDZ)
+let a = 10;
+console.log(count); // ❌ TDZ
+const count = 5;
+{
+  console.log(x); // ❌ TDZ
+  let x = 20;
+}
+
+
+⭐ Example 1 — Valid Shadowing (let inside block)
+let a = 10;
+{
+  let a = 20;   // ✔ Allowed
+  console.log(a); // 20
+}
+console.log(a); // 10
+⭐ Example 2 — Valid var shadowing
+var x = 5;
+function test() {
+  var x = 50;   // ✔ Allowed
+  console.log(x);
+}
+test();
+console.log(x);
+
+
+
+⭐ Example 1 — let blocked by var
+let a = 10;
+
+{
+  var a = 20;   // ❌ Illegal shadowing
+}
+const x = 5;
+
+function test() {
+  var x = 100;  // ❌ Illegal
+}
+
+
+✅ TOPIC 5 — Coercion
+⭐ Example 1 — Implicit
+console.log("10" + 5); // "105"
+console.log("10" - 5); // 5
+
+⭐ Example 2 — Explicit
+console.log(Number("123")); // 123
+console.log(String(50)); // "50"
+
+⭐ Example 3 — Boolean coercion
+console.log(Boolean("")); // false
+console.log(Boolean("hello")); // true
+
+
+✅ TOPIC 6 — Memory Leak
+⭐ Example 1 — setInterval without clear
+setInterval(() => {
+  console.log("Running...");
+}, 1000);
+(If you never clear → memory leak)
+
+⭐ Example 2 — Global variables
+leak = [];
+function add() {
+  leak.push(1000);// keeps growing
+  console.log(leak)
+}
+setInterval(add, 1000)
+
+
+⭐ STACK OVERFLOW  Ex-1
+function a() {
+  console.log("A");
+  b();     // called inside → stack grows
+}
+
+function b() {
+  console.log("B");
+  c();     // called inside
+}
+
+function c() {
+  console.log("C");
+  a();     // loops back to A()
+}
+
+a(); // start
+
+
+⭐ Stack UnderFlow 
+Simple Normal Array Underflow Example
+let arr = [];
+console.log(arr.pop()); // undefined → means nothing to remove (underflow)
+
+Example--2
+let arr = [];  // empty array
+function popItem() {
+    if (arr.length === 0) {
+        console.log("❌ Underflow! Array is empty, nothing to remove.");
+        return;
+    }
+    arr.pop();
+}
+popItem();  // Underflow
+
+
+
+⭐ Class Examples
+class Car {
+  constructor(model, color) {
+    this.model = model;
+    this.color = color;
+  }
+}
+
+let car1 = new Car("BMW", "Black");
+let car2 = new Car("Audi", "White");
+let car3 = new Car("Benz", "Red");
+
+console.log(car1); 
+console.log(car2);
+console.log(car3);
+
+
+
+⭐ Shallow Copy Examples
+let a = { value: 10 };
+let b = a; // shallow copy
+
+b.value = 99;
+
+console.log(a.value); // 99 ⚠️ changes original
+
+⭐ Deep Copy Examples
+let a = { value: 10 };
+let b = JSON.parse(JSON.stringify(a)); // deep copy
+
+b.value = 99;
+console.log(a.value); // 10 😀 unchanged
 
 
 
     </script>
 </body>
+
 </html>
