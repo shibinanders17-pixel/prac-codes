@@ -185,8 +185,87 @@ b.value = 99;
 console.log(a.value); // 10 😀 unchanged
 
 
+Memoization means storing the functions results, and when the same input comes again and again, then we don’t calculate it again, and just enough reuse the stored result.
+⭐memoization Example
+let cache = {};
+
+function fastSquare(n) {
+  if (cache[n]) {         // check already calculated?
+    return cache[n];      // return from memory
+  }
+  console.log("Calculating...");
+  cache[n] = n * n;       // store in cache
+  return cache[n];
+}
+console.log(fastSquare(5)); // Calculating... → 25
+console.log(fastSquare(5)); // 25 (FAST → from cache)
+
+
+⭐ Example for Allocation
+let numbers = [1, 2, 3, 4];  
+memory allocated for array + elements
+let user = { name: "Karthik", age: 22 };
+memory allocated for object
+
+⭐ Example for Deallocation
+let data = { name: "Shiva" };
+data = null;  
+✅ 🔥 Example 2: Function scope deallocation
+function test() {
+    let x = { value: 100 };
+}
+test();  // after this x is no longer needed
+
+Explanation:
+test() run aagum pothu, x created.
+Function finish aana udane x scope-la illa.
+JS: “Ok, I will clean this memory.”
+→ Deallocate aagidum.
+
+
+
+⭐ Example for Gen Function
+function* countUp(arr) {
+  let i = 0;
+  while(i<arr.length){
+         yield arr[i];
+         i++;
+  }
+}
+const gen = countUp([1,2,3]);
+
+console.log(gen.next()); // { value: 1, done: false }
+console.log(gen.next()); // { value: 2, done: false }
+console.log(gen.next()); // { value: 3, done: false }
+console.log(gen.next()); // { value: undefined, done: true }
+
+
+⭐ Example of Curring
+function multiply(a) {
+  return function(b) {
+    return a * b;
+  };
+}
+console.log(multiply(10)(23))
+
+
+
+⭐ Callback Function
+function any(name, nick, callback){
+    let res =  name+" "+nick;
+    return callback(res);
+    
+}
+function any2(value){
+    console.log(value)
+}
+any("Shibin", "anderson", any2)
+
+
+
 
     </script>
 </body>
 
 </html>
+
