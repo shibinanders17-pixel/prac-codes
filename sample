@@ -103,6 +103,8 @@ export default function App(){
     )
 }
 
+
+
 1️⃣ Auto focus + show typed value
 Goal:
 Page load aagumbothu input auto focus
@@ -114,21 +116,21 @@ useEffect → page load
 useState → show value
 
 
-import {useRef, useEffect, useState} from 'react'
+import {useState} from 'react'
 export default function App(){
 
-    const InputRef = useRef()
+    // const InputRef = useRef()
     const [text, setText] = useState("")
-    useEffect(()=>{
-        console.log("page load")
-        InputRef.current.focus();
-    },[])
+    // useEffect(()=>{
+    //     console.log("page load")
+    //     InputRef.current.focus();
+    // },[])
 
     return(
         <div>
             <h1>text is : {text}</h1>
-            <input type="text" ref={InputRef} onChange={(e)=> setText(e.target.value)}/>
-            <button >Result </button>
+            <input type="text" />
+            <button onClick={(e)=> setText(e.target.value)} >Result </button>
         </div>
     )
 }
@@ -223,3 +225,140 @@ function App() {
 }
 
 export default App;
+
+
+⭐
+import { useState } from "react"
+export default function App(){
+   const [count, setCount] = useState(0)
+    return(
+        <div>
+            <h1>Count is : {count}</h1>
+            <button onClick={()=> setCount(count+1)}>Add</button>
+        </div>
+    )
+}
+
+
+⭐
+export default function App(){
+    return(
+       <Child name="Shibin" place="vallavilai"/>
+    )
+}
+function Child(props){
+   return(
+      <p> His name is {props.name} and place is {props.place} </p>
+   )
+}
+
+
+⭐
+import { useState } from "react"
+export default function App(){
+
+    const [user, setUser] = useState(true)
+    return(
+        <div>
+         {user? <h1>Welcome</h1> : <h1>Please log In</h1> }
+         <button onClick={()=> setUser(!user)}>Check</button>
+        </div>
+    )
+}
+
+
+⭐
+export default function App(){
+    const fruits = ["Apple", "Banana", "Mango"];
+    return(
+        <div>
+            <ul>
+                {fruits.map((value,index)=>(
+                    <li key={index}>{value}</li>
+                ))}
+            </ul>
+        </div>
+    )
+}
+
+
+
+⭐
+export default function App(){
+
+//    function Func(){
+//       alert("Welcome the squad..")
+//    }
+
+    return(
+        <div>
+            <button onClick={()=> alert("hello")}>Check</button>
+        </div>
+    )
+}
+
+
+
+⭐
+import { useState } from "react";
+
+function Form() {
+  const [name, setName] = useState("");
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    if (name === "") {
+      alert("Name is required");
+    } else {
+      alert("Form submitted");
+    }
+  };
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input
+        type="text"
+        placeholder="Enter name"
+        onChange={(e) => setName(e.target.value)}
+      />
+      <button type="submit">Submit</button>
+    </form>
+  );
+}
+
+export default Form;
+
+
+⭐
+import React from 'react'
+
+const Prac = () => {
+    const style = {color : "red", backgroundColor : "blue"}
+  return (
+    <div style = {style}>Prac</div>
+  )
+}
+
+export default Prac
+
+
+
+import { useState, useRef } from "react";
+
+export default function App() {
+  const [text, setText] = useState("");
+  const inputRef = useRef();
+
+  return (
+    <div>
+      <h1>Text is: {text}</h1>
+
+      <input type="text" ref={inputRef} />
+
+      <button onClick={() => setText(inputRef.current.value)}>
+        Result
+      </button>
+    </div>
+  );
+}
