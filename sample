@@ -1,0 +1,225 @@
+import { useRef } from "react";
+
+function App() {
+  const inputRef = useRef();
+
+  function showValue() {
+    alert(inputRef.current.value);
+  }
+
+  return (
+    <div>
+      <input type="text" ref={inputRef} />
+      <button onClick={showValue}>Show Value</button>
+     
+    </div>
+  );
+}
+
+export default App;
+
+
+import { useRef, useEffect } from "react";
+
+function Prac() {
+  const inputRef = useRef();
+
+  useEffect(() => {
+    console.log(inputRef);
+  }, []);
+
+  return (
+    <div>
+      <input ref={inputRef} placeholder="Type here" />
+    </div>
+  );
+}
+
+export default Prac;
+
+
+import { useRef, useEffect } from "react";
+
+function App() {
+
+    const InputRef = useRef()
+
+  useEffect(() => {
+    console.log(InputRef.current.focus())
+  
+}, []);
+
+  return (
+    <div>
+      <input type="text" ref={InputRef} />
+      <button>Result</button>
+    </div>
+  );
+}
+
+export default App;
+
+
+import {useRef} from "react"
+
+export default function App(){
+    const InputRef = useRef() 
+
+    function Func(){
+        InputRef.current.focus();
+
+    }
+    
+    return(
+        <div>
+            <input type="text" ref={InputRef} /> <br /> <br />
+            <button onClick={Func}>Clear</button>
+        </div>
+    )
+}
+
+
+import {useRef, useEffect} from "react"
+
+export default function App(){
+    const InputRef = useRef()
+
+    useEffect(()=>{
+        console.log("Auto Focused")
+        InputRef.current.focus();
+        function Func(){
+            InputRef.current.focus();
+        }
+    },[])
+
+ 
+
+    return(
+        <div>
+            <h1></h1>
+            <input type="text" ref={InputRef}/>
+            <button>Result</button>
+        </div>
+    )
+}
+
+1️⃣ Auto focus + show typed value
+Goal:
+Page load aagumbothu input auto focus
+Input-la type panna value screen-la show aaganum
+
+Use:
+useRef → input focus
+useEffect → page load
+useState → show value
+
+
+import {useRef, useEffect, useState} from 'react'
+export default function App(){
+
+    const InputRef = useRef()
+    const [text, setText] = useState("")
+    useEffect(()=>{
+        console.log("page load")
+        InputRef.current.focus();
+    },[])
+
+    return(
+        <div>
+            <h1>text is : {text}</h1>
+            <input type="text" ref={InputRef} onChange={(e)=> setText(e.target.value)}/>
+            <button >Result </button>
+        </div>
+    )
+}
+
+
+
+
+import {useRef, useState} from 'react'
+export default function App(){
+
+    const InputRef = useRef()
+    const [text, setText] = useState("")
+    // useEffect(()=>{
+    //     console.log("page load")
+    //     InputRef.current.focus();
+    // },[])
+
+    function Func(){
+        setText(InputRef.current.value)
+    }
+
+    return(
+        <div>
+            <h1>text is : {text}</h1>
+            <input type="text" ref={InputRef} />
+            <button onClick={Func} >Result </button>
+        </div>
+    )
+}
+
+import {useEffect, useState} from "react"
+export default function App(){
+
+    const [text, setText] = useState([])
+    useEffect(()=>{
+        fetch("https://jsonplaceholder.typicode.com/users")
+        .then((res)=>{
+            if(res.ok){
+              return res.json();
+            }
+        }).then((data)=>{
+            setText(data)
+        }).catch((error)=>{
+            console.log(error)
+        })
+    },[])
+
+    return(
+        <div>
+            <h2>User List</h2>
+           {text.map((value)=>(
+                <li key={value.id}>{value.name}</li>
+           ))}
+        </div>
+    )
+}
+
+
+import { useState } from "react";
+
+function App() {
+  const [todos, setTodos] = useState([]);
+  const [text, setText] = useState("");
+ 
+
+  const addTodo = () => {
+    if (!text) return;
+    setTodos([...todos, text]);
+    setText("");
+  };
+
+  return (
+    <div>
+      <h3>Todo List</h3>
+
+    <input
+        value={text}
+        placeholder="Enter todo"
+        onChange={(e) => setText(e.target.value)}
+       />
+      
+      <button onClick={addTodo}>Add</button>
+
+      <ul>
+        {todos.map((todo, index) => (
+          <li key={index}> <input type="checkbox"/>{todo}</li>
+        ))}
+      </ul>
+
+    </div>
+  );
+}
+
+export default App;
